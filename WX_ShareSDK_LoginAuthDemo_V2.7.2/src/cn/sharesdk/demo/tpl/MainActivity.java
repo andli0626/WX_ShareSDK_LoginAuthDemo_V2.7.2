@@ -34,16 +34,30 @@ public class MainActivity extends Activity implements Callback,PlatformActionLis
 		// 初始化ShareSDK（不可缺失）
 		ShareSDK.initSDK(this);
 		
-		Button authButton = (Button) findViewById(R.id.authButton);
-		authButton.setOnClickListener(this);
+		Button authButton1 		= (Button) findViewById(R.id.authButton1);
+		authButton1.setOnClickListener(this);
+		
+		Button authButton2 		= (Button) findViewById(R.id.authButton2);
+		authButton2.setOnClickListener(this);
+		
+		Button cancleAuthButton = (Button) findViewById(R.id.cancleAuthButton);
+		cancleAuthButton.setOnClickListener(this);
 	}
 	
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		// 授权登录按钮
-		case R.id.authButton:
-			authorize(new Wechat(MainActivity.this));
+		// 授权登录按钮:非SSO
+		case R.id.authButton1:
+			authorize(new Wechat(MainActivity.this),true);
+			break;
+		// 授权登录按钮:SSO
+		case R.id.authButton2:
+			authorize(new Wechat(MainActivity.this),false);
+			break;
+		// 取消授权
+		case R.id.cancleAuthButton:
+			cancleAuth();
 			break;
 		default:
 			break;
@@ -52,7 +66,7 @@ public class MainActivity extends Activity implements Callback,PlatformActionLis
 	}
 
 	// 授权登录
-	private void authorize(Platform plat) {
+	private void authorize(Platform plat,Boolean isSSO) {
 		// 判断指定平台是否已经完成授权
 		if (plat.isValid()) {
 			// 已经完成授权，直接读取本地授权信息，执行相关逻辑操作（如登录操作）
@@ -65,9 +79,15 @@ public class MainActivity extends Activity implements Callback,PlatformActionLis
 		}
 		plat.setPlatformActionListener(this);
 		// 是否使用SSO授权：true不使用，false使用
-		plat.SSOSetting(true);
+		plat.SSOSetting(isSSO);
 		// 获取用户资料
 		plat.showUser(null);
+	}
+	// 取消授权
+	private void cancleAuth(){
+		Platform wxPlatform = ShareSDK.getPlatform(Wechat.NAME);
+		wxPlatform.removeAccount();
+		Toast.makeText(this,"取消授权成功!", Toast.LENGTH_SHORT).show();
 	}
 
 	// 回调：授权成功
@@ -128,6 +148,12 @@ public class MainActivity extends Activity implements Callback,PlatformActionLis
 			break;
 		case MSG_AUTH_COMPLETE: 
 			Toast.makeText(this,"授权成功，正在跳转登录操作…", 				Toast.LENGTH_SHORT).show();
+			// 执行相关业务逻辑操作，比如登录操作
+			String userName = new Wechat(MainActivity.this).getDb().getUserName(); // 用户昵称
+			String userId	= new Wechat(MainActivity.this).getDb().getUserId();   // 用户Id
+			String platName = new Wechat(MainActivity.this).getName();			   // 平台名称
+				
+			login(platName, userId, null);
 			break;
 		}
 		return false;

@@ -8,10 +8,20 @@
         android:orientation="vertical" >
 
         <Button
-            android:id="@+id/authButton"
+            android:id="@+id/authButton1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="授权登录" />
+            android:text="请求微信登录授权(非SSO-网页请求)" />
+        <Button
+            android:id="@+id/authButton2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="请求微信登录授权(SSO-启动微信客户端)" />
+         <Button
+            android:id="@+id/cancleAuthButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="取消授权" />
     </LinearLayout>
 
 </LinearLayout>

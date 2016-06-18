@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">分享Demo</string>
+    <string name="app_name">微信登录授权</string>
 
 </resources>
