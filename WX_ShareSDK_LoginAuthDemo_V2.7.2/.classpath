@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry kind="lib" path="libs/MobCommons-2016.0426.1819.jar"/>
+	<classpathentry kind="lib" path="libs/MobTools-2016.0426.1819.jar"/>
+	<classpathentry kind="lib" path="libs/ShareSDK-Core-2.7.2.jar"/>
+	<classpathentry kind="lib" path="libs/ShareSDK-Wechat-2.7.2.jar"/>
+	<classpathentry kind="lib" path="libs/ShareSDK-Wechat-Core-2.7.2.jar"/>
+	<classpathentry kind="lib" path="libs/ShareSDK-Wechat-Favorite-2.7.2.jar"/>
+	<classpathentry kind="lib" path="libs/ShareSDK-Wechat-Moments-2.7.2.jar"/>
+	<classpathentry kind="output" path="bin/classes"/>
+</classpath>
