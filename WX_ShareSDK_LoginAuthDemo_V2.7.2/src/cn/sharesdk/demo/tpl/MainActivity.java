@@ -99,7 +99,7 @@ public class MainActivity extends Activity implements Callback,PlatformActionLis
 			String userId	= platform.getDb().getUserId();	  // 用户Id
 			String platName = platform.getName();			  // 平台名称
 				
-			login(platName, userId, res);
+			login(platName, userName, res);
 		}
 	}
 	// 回调：授权失败
